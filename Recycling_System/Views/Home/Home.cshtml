@@ -1,0 +1,157 @@
+﻿@using u21520659_HW4.Models;
+@model IEnumerable<u21520659_HW4.Models.Goal>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>Education</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Sponsor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Donation)
+        </th>
+        <th>
+            Task Category
+        </th>
+        <th>
+            Duration
+        </th>
+        <th>
+            School Name
+        </th>
+        <th>
+            Donation
+        </th>
+        <th>
+            Duration x Donation
+        </th>
+
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (item.GetType() == typeof(Education))
+        {
+            Education education = (Education)item;
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => education.Sponsor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => education.Duration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => education.Donation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => education.EducationType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => education.Duration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => education.SchoolName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => education.SchoolGrade)
+                </td>
+                <td>
+                    @item.AccumulatedCost()
+                </td>
+
+
+
+                <td>
+                    @Html.ActionLink("Edit", "EditNonEntry", new { id = item.SDGID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.SDGID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SDGID })
+                </td>
+            </tr>
+
+        }
+    }
+</table>
+
+
+
+<h2>Partnership</h2>
+<!-- Partnership-->
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Sponsor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Donation)
+        </th>
+        <th>
+            Partnership
+        </th>
+        <th>
+            Duration
+        </th>
+        <th>
+            Duration x Donation
+        </th>
+        <th>
+            Donation
+        </th>
+
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (item.GetType() == typeof(Partnership))
+        {
+            Partnership partnership = (Partnership)item;
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => partnership.Sponsor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => partnership.Duration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => partnership.Donation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => partnership.PartnershipType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => partnership.Duration)
+                </td>
+                <td>
+                    @item.AccumulatedCost();
+                </td>
+                <td>
+                    @item.CalculateCost();
+                </td>
+                <td>
+
+                <td>
+                    @Html.ActionLink("Edit", "EditreEntry", new { id = item.SDGID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.SDGID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SDGID })
+                </td>
+            </tr>
+
+        }
+    }
+
+</table>
+
+
